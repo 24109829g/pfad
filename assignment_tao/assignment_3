@@ -1,0 +1,55 @@
+import random
+
+
+def get_computer_choice(items):
+    '''
+    select one at random from the items
+    '''
+    return random.choice(items)
+
+def get_user_choice(items):
+    '''
+    get user choice
+    '''
+    print('input index to make your choice:')
+    for index,item in enumerate(items,start=1):
+        print(f'index:{index},item:{item}')
+    inputs=eval(input())
+    if inputs not in [1,2,3]:
+        print('please check your input.')
+        return get_computer_choice(items)
+    return items[inputs-1]
+
+def main():
+    items = ['rock', 'paper', 'scissors']
+    print('This is a simple little game, you can choose rock paper')
+    print('scissors to play against the robot until the winner.')
+    winner=None
+    while not winner:
+        u_choice=get_user_choice(items)
+        c_choice=get_computer_choice(items)
+        print(f'User Choice :{u_choice} and Computer Choice :{c_choice}.')
+        if u_choice!=c_choice:
+            if u_choice=='rock' and c_choice=='scissors':
+                winner='User'
+            else:
+                winner='Computer'
+
+            if u_choice=='paper' and c_choice=='rock':
+                winner='User'
+            else:
+                winner='Computer'
+
+            if u_choice=='scissors' and c_choice=='paper':
+                winner='User'
+            else:
+                winner='Computer'
+            break
+
+
+        print('continue the game')
+
+    print(f'Winner is {winner}')
+
+if __name__=='__main__':
+    main()
